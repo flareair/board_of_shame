@@ -14,10 +14,25 @@
 
     .mobile-labels {
         font-weight: bold;
+        display: none;
     }
 
     .break-words {
         word-break: break-all;
     }
     border-bottom: @border;
+}
+
+@media (min-width: 1px) and (max-width: @screen-sm-max) {
+    .board-item .mobile-labels {
+        display: block;
+    }
+
+    .board-header {
+        display: none;
+    }
+
+    .board-caption {
+        display: none;
+    }
 }
