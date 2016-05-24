@@ -5,9 +5,9 @@ pagesRouter.$inject = ['$routeProvider'];
 export default function pagesRouter($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: '/pages/partials/mainpage.html',
-            controller: 'MainPageCtrl',
-            controllerAs: 'mainpage',
+            templateUrl: '/pages/partials/board.html',
+            controller: 'BoardCtrl',
+            controllerAs: 'board',
         })
         .when('/about', {
             templateUrl: '/pages/partials/about.html',

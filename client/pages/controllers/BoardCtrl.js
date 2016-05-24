@@ -1,11 +1,11 @@
 'use strict';
 
-export default class MainPageCtrl {
+export default class BoardCtrl {
     constructor(metaDataService, menuService) {
-        this.title = 'Main page';
+        this.title = 'BoardOfShame';
         metaDataService.setPageTitle(this.title);
         menuService.setActiveItem('/');
     }
 }
 
-MainPageCtrl.$inject = ['metaDataService', 'menuService'];
+BoardCtrl.$inject = ['metaDataService', 'menuService'];

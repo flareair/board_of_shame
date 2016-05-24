@@ -6,7 +6,7 @@ export default class menuService {
         this.menuItems = [
             {
                 link: '/',
-                name: 'Home',
+                name: 'Board',
             },
             {
                 link: '/about',
