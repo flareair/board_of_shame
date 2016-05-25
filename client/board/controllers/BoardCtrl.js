@@ -17,8 +17,10 @@ export default class BoardCtrl {
     activate() {
         this.boardService.getAllScammers()
             .then((res) => {
-                // console.log(res.data[0]);
                 this.scammers = res.data;
+            })
+            .catch((err) => {
+                console.error(err.statusText);
             });
     }
 }
