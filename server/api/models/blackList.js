@@ -21,16 +21,12 @@ class BlackList {
             let lastPending = metaData.lastPending;
             let localLastUpdated = metaData.lastUpdated;
 
+            console.log('Time diff', now.getTime() - lastPending.getTime());
             if ((now.getTime() - lastPending.getTime()) > 300000) {
                 that.dataProvider.getLastModifiedDate((err, sheetDate) => {
 
                     if (err || !sheetDate) {
-                        // this.metaData.updateMeta({lastPending: now}, (err) => {
-                        //     if (err) {
-                        //         console.error(err);
-                        //     }
-                            return callback(null, true);
-                        // });
+                        return callback(null, true);
                     }
 
                     sheetDate = new Date(sheetDate);

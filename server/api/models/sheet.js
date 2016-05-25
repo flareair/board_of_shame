@@ -79,7 +79,6 @@ class Sheet {
                     console.log('error!');
                     return callback(err);
                 }
-                console.log(res);
                 return callback(null, res.values);
             });
         });
