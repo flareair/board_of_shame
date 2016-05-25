@@ -1,29 +1,29 @@
 <div class="container">
-    <h1 class="board-caption">Search here:</h1>
-    <input type="text" class="form-control input-lg" placeholder="Type name, link or any additional info" ng-model="board.search">
+    <h1 class="board-caption">Ищи здесь:</h1>
+    <input type="text" class="form-control input-lg" placeholder="Имя, ссылка или другая информация" ng-model="board.search">
     <div class="row board-header">
-        <div class="col-md-2"><h3>Name</h3></div>
-        <div class="col-md-5"><h3>Description</h3></div>
-        <div class="col-md-3"><h3>Link</h3></div>
-        <div class="col-md-2"><h3>Сomplaint from</h3></div>
+        <div class="col-md-2"><h3>ФИО</h3></div>
+        <div class="col-md-5"><h3>Чем знаменит</h3></div>
+        <div class="col-md-3"><h3>Ссылка</h3></div>
+        <div class="col-md-2"><h3>Жалоба от</h3></div>
     </div>
     <div class="row board-item" ng-repeat="scammer in board.filtered = (board.scammers | filter: board.search)">
         <div class="col-md-2">
-            <div class="mobile-labels">Name:</div>
+            <div class="mobile-labels">ФИО:</div>
             {{scammer.name}}
         </div>
         <div class="col-md-5">
-            <div class="mobile-labels">Description:</div>
+            <div class="mobile-labels">Чем знаменит:</div>
             {{scammer.description}}
         </div>
         <div class="col-md-3 col-sm-6 col-xs-6 break-words">
-            <div class="mobile-labels">Link:</div>
+            <div class="mobile-labels">Ссылка:</div>
             <span ng-bind-html="scammer.href | linkFilter"></span>
         </div>
         <div class="col-md-2 col-sm-6 col-xs-6 break-words">
-            <div class="mobile-labels">Сomplaint from:</div>
+            <div class="mobile-labels">Жалоба от:</div>
             <span ng-bind-html="scammer.complaintFrom | linkFilter"></span>
         </div>
     </div>
-    <p><b>Total items:</b> {{board.filtered.length}}</p>
+    <p><b>Всего найдено:</b> {{board.filtered.length}}</p>
 </div>

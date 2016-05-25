@@ -2,7 +2,7 @@
 
 export default class BoardCtrl {
     constructor(metaDataService, menuService, boardService) {
-        this.title = 'BoardOfShame';
+        this.title = 'BoardOfShame Список мошенников';
         metaDataService.setPageTitle(this.title);
         menuService.setActiveItem('/');
 
