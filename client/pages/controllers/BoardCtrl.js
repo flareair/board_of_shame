@@ -11,12 +11,13 @@ export default class BoardCtrl {
         this.scammers = [];
 
         this.activate();
+        this.search = '';
     }
 
     activate() {
         this.boardService.getAllScammers()
             .then((res) => {
-                console.log(res.data[0]);
+                // console.log(res.data[0]);
                 this.scammers = res.data;
             });
     }
