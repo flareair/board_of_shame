@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 let pagesRouter = require('./pages/pagesRouter');
+let boardRouter = require('./board/boardRouter');
 let sharedRouter = require('./shared/sharedRouter');
 let apiRouter = require('./api/apiRouter');
 
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/pages', pagesRouter);
+app.use('/board', boardRouter);
 app.use('/api', apiRouter);
 app.use('/', sharedRouter);
 // app.use('/', coreRouter);
