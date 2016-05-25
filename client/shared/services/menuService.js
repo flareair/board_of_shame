@@ -6,11 +6,11 @@ export default class menuService {
         this.menuItems = [
             {
                 link: '/',
-                name: 'Board',
+                name: 'Список',
             },
             {
                 link: '/about',
-                name: 'About',
+                name: 'О проекте',
             },
         ];
     }
