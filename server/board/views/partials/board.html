@@ -18,11 +18,11 @@
         </div>
         <div class="col-md-3 col-sm-6 col-xs-6 break-words">
             <div class="mobile-labels">Link:</div>
-            {{scammer.href}}
+            <span ng-bind-html="scammer.href | linkFilter"></span>
         </div>
         <div class="col-md-2 col-sm-6 col-xs-6 break-words">
             <div class="mobile-labels">Сomplaint from:</div>
-            {{scammer.complaintFrom}}
+            <span ng-bind-html="scammer.complaintFrom | linkFilter"></span>
         </div>
     </div>
     <p><b>Total items:</b> {{board.filtered.length}}</p>

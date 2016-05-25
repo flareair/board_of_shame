@@ -1,8 +1,8 @@
 'use strict';
 
-pagesRouter.$inject = ['$routeProvider'];
+boardRouter.$inject = ['$routeProvider'];
 
-export default function pagesRouter($routeProvider) {
+export default function boardRouter($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/board/partials/board.html',

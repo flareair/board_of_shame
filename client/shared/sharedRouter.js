@@ -8,10 +8,15 @@ export default function routing($routeProvider, $locationProvider) {
             templateUrl: '/shared/partials/404',
             controller: 'NotFoundPageCtrl',
             controllerAs: 'notfound',
-        })
-        .otherwise({
-            redirectTo: '/404'
         });
+        // .when('/about', {
+        //     templateUrl: '/pages/partials/about.html',
+        //     controller: 'NotFoundPageCtrl',
+        //     controllerAs: 'notfound',
+        // });
+        // .otherwise({
+        //     redirectTo: '/404'
+        // });
 
     $locationProvider.html5Mode(true);
 }
