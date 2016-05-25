@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="board-caption">Ищи здесь:</h1>
+    <h1 class="board-caption">Поиск:</h1>
     <input type="text" class="form-control input-lg" placeholder="Имя, ссылка или другая информация" ng-model="board.search" autofocus>
     <div class="row board-header">
         <div class="col-md-2"><h3>ФИО</h3></div>
@@ -7,6 +7,7 @@
         <div class="col-md-3"><h3>Ссылка</h3></div>
         <div class="col-md-2"><h3>Жалоба от</h3></div>
     </div>
+
     <div class="row board-item" ng-repeat="scammer in board.filtered = (board.scammers | filter: board.search)">
         <div class="col-md-2">
             <div class="mobile-labels">ФИО:</div>
