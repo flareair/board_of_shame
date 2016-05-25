@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="board-caption">Ищи здесь:</h1>
-    <input type="text" class="form-control input-lg" placeholder="Имя, ссылка или другая информация" ng-model="board.search">
+    <input type="text" class="form-control input-lg" placeholder="Имя, ссылка или другая информация" ng-model="board.search" autofocus>
     <div class="row board-header">
         <div class="col-md-2"><h3>ФИО</h3></div>
         <div class="col-md-5"><h3>Чем знаменит</h3></div>
@@ -25,5 +25,9 @@
             <span ng-bind-html="scammer.complaintFrom | linkFilter"></span>
         </div>
     </div>
-    <p><b>Всего найдено:</b> {{board.filtered.length}}</p>
+    <div class="board-footer text-center">
+        <p ng-show="board.filtered.length > 0"><b>Всего найдено:</b> {{board.filtered.length}}</p>
+        <p ng-hide="board.filtered.length > 0"><b>Ничего не найдено</b></p>
+    </div>
+
 </div>
