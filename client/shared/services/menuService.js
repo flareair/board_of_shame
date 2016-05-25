@@ -2,7 +2,7 @@
 
 export default class menuService {
     constructor() {
-        this.activeItem = '/';
+        this.activeItem = '';
         this.menuItems = [
             {
                 link: '/',
