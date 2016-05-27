@@ -6,7 +6,7 @@ export default function linkFilter() {
             return input;
         }
 
-        let links = input.replace( /\n/g, ' ').split(' ').filter(Boolean);
+        let links = input.replace( /[\n,]/g, ' ').split(' ').filter(Boolean);
 
         let output = links.reduce((prev, current) => {
             return prev + `<a href="${current}" target="_blank">${current}</a><br />`;
