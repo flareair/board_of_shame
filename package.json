@@ -4,7 +4,8 @@
   "description": "Board of shame",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "NODE_ENV=production webpack && ./node_modules/.bin/forever ./bin/www",
+    "postinstall": "node ./server/init.js"
   },
   "author": "flare",
   "license": "MIT",
