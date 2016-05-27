@@ -2,7 +2,7 @@
 
 export default class metaDataService {
     constructor() {
-        this.pageTitle = 'default';
+        this.pageTitle = '';
     }
 
     getPageTitle() {
