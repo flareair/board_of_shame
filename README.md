@@ -1,15 +1,32 @@
 # Board Of Shame
 
-Special for [G.A.S. club](https://vk.com/gasclub)
+Special for [G.A.S. club](https://vk.com/gasclub).
+
+
+## Requirements
+
+Was tested on Linux with Node v6.2.0, use docker image please.
+
+## How to start
+
+1. Clone this repo, move to project folder
+2. Run `npm i`
+3. Run `npm run postinstall && npm start`
 
 ## Deploy instructions (docker)
 
-For use with [nginx-proxy](https://github.com/jwilder/nginx-proxy)
+For use with [nginx-proxy](https://github.com/jwilder/nginx-proxy).
 
-1. Clone this repo
+1. Clone this repo, move to project folder
 2. Place your [google credential file](https://github.com/google/google-auth-library-nodejs#download-your-service-account-credentials-json-file) to `/deploy` folder
 3. Change `VIRTUAL_HOST` in `docker-compose.yml`
 4. Run commands: `docker-compose build` and then `docker-compose up -d` in `/deploy` folder
+
+## TODO
+
+* Unit and e2e testing
+* API full text search
+* Telegram bot
 
 ## Author
 
