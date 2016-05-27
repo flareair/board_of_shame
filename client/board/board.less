@@ -32,6 +32,15 @@
     margin-top: 100px;
 }
 
+.board-top {
+    background: @gray-lighter;
+    background: url('pattern.jpg');
+    background-repeat: repeat;
+    input {
+        margin-bottom: 15px;
+    }
+}
+
 @media (min-width: 1px) and (max-width: @screen-sm-max) {
     .board-item .mobile-labels {
         display: block;
@@ -43,5 +52,10 @@
 
     .board-caption {
         display: none;
+    }
+
+    .board-top {
+        padding-top: 15px;
+        background: @gray-lighter;
     }
 }
