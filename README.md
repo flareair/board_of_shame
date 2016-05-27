@@ -7,7 +7,7 @@ Special for [G.A.S. club](https://vk.com/gasclub)
 For use with [nginx-proxy](https://github.com/jwilder/nginx-proxy)
 
 1. Clone this repo
-2. Place your google credential file to `/deploy` folder
+2. Place your [google credential file](https://github.com/google/google-auth-library-nodejs#download-your-service-account-credentials-json-file) to `/deploy` folder
 3. Change `VIRTUAL_HOST` in `docker-compose.yml`
 4. Run commands: `docker-compose build` and then `docker-compose up -d` in `/deploy` folder
 
