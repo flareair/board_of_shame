@@ -8,6 +8,10 @@
   },
   "author": "flare",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flareair/board_of_shame.git"
+  },
   "dependencies": {
     "angular": "^1.5.2",
     "angular-route": "^1.5.2",
