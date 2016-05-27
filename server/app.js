@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const compression = require('compression');
 
 let pagesRouter = require('./pages/pagesRouter');
 let boardRouter = require('./board/boardRouter');
@@ -29,7 +30,7 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, ''));
 
 
-
+app.use(compression());
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
