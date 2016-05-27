@@ -14,11 +14,15 @@ let boardRouter = require('./board/boardRouter');
 let sharedRouter = require('./shared/sharedRouter');
 let apiRouter = require('./api/apiRouter');
 
+let config = require('./config/db');
+
 let app = express();
 
 
+console.log(config);
+
 // connect to mongoose
-mongoose.connect('mongodb://localhost/blacklist');
+mongoose.connect(`mongodb://${config.addr}/blacklist:${config.port}`);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
