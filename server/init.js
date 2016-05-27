@@ -3,8 +3,10 @@
 const mongoose = require('mongoose');
 const MetaData = require('./api/models/metaData');
 
+let config = require('./config/db');
 
-mongoose.connect('mongodb://localhost/blacklist');
+
+mongoose.connect(`mongodb://${config.addr}/blacklist:${config.port}`);
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
