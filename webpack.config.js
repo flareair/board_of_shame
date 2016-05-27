@@ -35,7 +35,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract('style','css!postcss!less')
+                loader: ExtractTextPlugin.extract('style','css?minimize!postcss!less')
             },
             {
               test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
