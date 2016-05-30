@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse" ng-class="{in: menu.isCollapsed}">
             <ul class="nav navbar-nav">
-                <li ng-repeat="menuItem in menu.menuItems" ng-class="menu.isActive(menuItem.link)"><a href="{{menuItem.link}}">{{menuItem.name}}</a></li>
+                <li ng-repeat="menuItem in menu.menuItems" ng-class="menu.isActive(menuItem.link)" ng-click="menu.followLink()"><a href="{{menuItem.link}}">{{menuItem.name}}</a></li>
             </ul>
         </div>
     </div>

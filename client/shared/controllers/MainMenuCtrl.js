@@ -15,6 +15,10 @@ export default class MainMenuCtrl {
     toggle() {
         this.isCollapsed = !this.isCollapsed;
     }
+
+    followLink() {
+        this.isCollapsed = false;
+    }
 }
 
 MainMenuCtrl.$inject = ['menuService'];
