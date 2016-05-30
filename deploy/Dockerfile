@@ -16,6 +16,6 @@ ENV GOOGLE_APPLICATION_CREDENTIALS /app/credentials.json
 
 RUN npm i
 
-CMD npm run postinstall && npm start
+CMD npm start
 
 EXPOSE 80
