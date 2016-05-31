@@ -4,6 +4,8 @@ import app from '../../app';
 describe('Board controller', () => {
     // let BoardCtrl;
     let stubBoardService;
+    let stubMetaDataService;
+    let stubMenuService;
     let sandbox;
     let deferred;
     let BoardCtrl;
@@ -18,6 +20,7 @@ describe('Board controller', () => {
             }
         ]
     };
+    let pageTitle = 'BoardOfShame Список мошенников';
 
 
     beforeEach(() => {
@@ -25,6 +28,7 @@ describe('Board controller', () => {
         angular.mock.module(app);
         angular.mock.inject(($controller, $q, _$rootScope_) => {
             deferred = $q.defer();
+
             stubBoardService = sandbox.stub({
                 getAllScammers: () => {
                 }
@@ -32,9 +36,22 @@ describe('Board controller', () => {
 
             stubBoardService.getAllScammers.returns(deferred.promise);
 
+
+            stubMetaDataService = sandbox.stub({
+                setPageTitle: () => {
+                }
+            });
+
+            stubMenuService = sandbox.stub({
+                setActiveItem: () => {
+                }
+            });
+
             $scope = _$rootScope_.$new();
 
             BoardCtrl = $controller('BoardCtrl', {
+                metaDataService: stubMetaDataService,
+                menuService: stubMenuService,
                 boardService: stubBoardService,
             });
         });
@@ -50,19 +67,32 @@ describe('Board controller', () => {
     it('should have right title', () => {
         expect(BoardCtrl).to.be.an('object');
         expect(BoardCtrl.title).to.be.a('string');
-        expect(BoardCtrl.title).to.equal('BoardOfShame Список мошенников');
+        expect(BoardCtrl.title).to.equal(pageTitle);
+    });
+
+
+    it('should use menuService and send proper args to it', (done) => {
+
+        BoardCtrl.activate();
+        expect(stubMenuService.setActiveItem.calledWith('/')).to.be.true;
+        done();
+
+    });
+
+    it('should use metaDataService and send proper args to it', (done) => {
+
+        BoardCtrl.activate();
+        expect(stubMetaDataService.setPageTitle.calledWith(pageTitle)).to.be.true;
+        done();
+
     });
 
     describe('activate() method', () => {
-        it('should use BoardService', (done) => {
+        it('should use boardService', (done) => {
 
-            BoardCtrl.activate().then((data) => {
-                expect(data).to.deep.equal(res.data);
-                done();
-            });
-
-            deferred.resolve(res);
-            $scope.$apply();
+            BoardCtrl.activate();
+            expect(stubBoardService.getAllScammers.called).to.be.true;
+            done();
 
         });
 
