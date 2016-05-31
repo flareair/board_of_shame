@@ -11,14 +11,14 @@ describe('MetaData service', () => {
         });
     });
 
-    it('should have proper default page title', () => {
+    it('should have empty default page title', () => {
         expect(metaDataService.pageTitle).to.be.a('string');
-        expect(metaDataService.pageTitle).to.equal('default');
+        expect(metaDataService.pageTitle).to.equal('');
     });
 
     describe('getPageTitle() method', () => {
         it('should return current pageTitle', () => {
-            expect(metaDataService.getPageTitle()).to.equal('default');
+            expect(metaDataService.getPageTitle()).to.equal('');
             metaDataService.pageTitle = 'blablabla';
             expect(metaDataService.getPageTitle()).to.equal('blablabla');
         });
