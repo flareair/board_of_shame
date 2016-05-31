@@ -49,4 +49,24 @@ describe('MainMenu controller', () => {
     });
 
 
+    describe('toggle() method', () => {
+        it('should toggle isCollapsed variable', () => {
+            expect(MainMenuCtrl.isCollapsed).to.be.false;
+            MainMenuCtrl.toggle();
+            expect(MainMenuCtrl.isCollapsed).to.be.true;
+        });
+    });
+
+    describe('followLink() method', () => {
+        it('should set isCollapsed variable to false', () => {
+            expect(MainMenuCtrl.isCollapsed).to.be.false;
+            MainMenuCtrl.followLink();
+            expect(MainMenuCtrl.isCollapsed).to.be.false;
+
+            MainMenuCtrl.isCollapsed = true;
+            MainMenuCtrl.followLink();
+            expect(MainMenuCtrl.isCollapsed).to.be.false;
+        });
+    });
+
 });
