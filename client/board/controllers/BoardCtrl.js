@@ -12,19 +12,23 @@ export default class BoardCtrl {
         this.loading = false;
 
         this.activate();
+
         this.search = '';
     }
 
     activate() {
         this.loading = true;
-        this.boardService.getAllScammers()
+        return this.boardService.getAllScammers()
             .then((res) => {
                 this.scammers = res.data;
-                this.loading = false;
+                return this.scammers;
             })
             .catch((err) => {
-                this.loading = false;
                 console.error(err.statusText);
+                return false;
+            })
+            .finally(() => {
+                this.loading = false;
             });
     }
 }

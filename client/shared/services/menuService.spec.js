@@ -11,9 +11,9 @@ describe('Main menu service', () => {
         });
     });
 
-    it('should have proper default active item', () => {
+    it('should have empty default active item', () => {
         expect(menuService.activeItem).to.be.a('string');
-        expect(menuService.activeItem).to.equal('/');
+        expect(menuService.activeItem).to.equal('');
     });
 
     it('should have array of menu items', () => {
@@ -24,7 +24,7 @@ describe('Main menu service', () => {
     describe('getActiveItem() method', () => {
         it('should return actual active menu item', () => {
             expect(menuService.getActiveItem()).to.be.a('string');
-            expect(menuService.getActiveItem()).to.equal('/');
+            expect(menuService.getActiveItem()).to.equal('');
 
             menuService.activeItem = '/about';
             expect(menuService.getActiveItem()).to.equal('/about');
