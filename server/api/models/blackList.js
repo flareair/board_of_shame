@@ -58,6 +58,8 @@ class BlackList {
             if (err) {
                 return callback(err);
             }
+            // new scammers first
+            data = data.reverse();
 
             let scammers = data.map((scammer) => {
                 return {
