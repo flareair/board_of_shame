@@ -2,6 +2,13 @@
 
 Special for [G.A.S. club](https://vk.com/gasclub).
 
+Deployed:
+[boardofshame.2enter.ru](http://boardofshame.2enter.ru/)
+
+[Original table](https://docs.google.com/spreadsheets/d/12k92qZdkAvnff38qMY8P0U8F1UVWjE0sxhEnEGDfLd8/edit#gid=0)
+[VK group](http://vk.com/boardofshame)
+
+
 
 ## Requirements
 
