@@ -18,7 +18,7 @@
         <div class="row board-item" ng-repeat="scammer in board.filtered = (board.scammers | filter: board.search)">
             <div class="col-md-2">
                 <div class="mobile-labels">ФИО:</div>
-                {{scammer.name}}
+                <span ng-bind-html="scammer.name | nameFilter"></span>
             </div>
             <div class="col-md-5">
                 <div class="mobile-labels">Чем знаменит:</div>
