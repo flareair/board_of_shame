@@ -11,8 +11,6 @@ import boardService from './services/boardService';
 import linkFilter from './filters/linkFilter';
 import nameFilter from './filters/nameFilter';
 
-console.log(nameFilter);
-
 import BoardCtrl from './controllers/BoardCtrl';
 
 export default angular.module('app.board', [ngRouter])
