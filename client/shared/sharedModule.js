@@ -13,6 +13,7 @@ import MainMenuCtrl from './controllers/MainMenuCtrl';
 import NotFoundPageCtrl from './controllers/NotFoundPageCtrl';
 
 import mainMenu from './directives/mainMenuDirective';
+import siteFooter from './directives/siteFooterDirective';
 
 export default angular.module('app.shared', [ngRouter])
     .config(sharedRouter)
@@ -22,4 +23,5 @@ export default angular.module('app.shared', [ngRouter])
     .controller('MainMenuCtrl', MainMenuCtrl)
     .controller('NotFoundPageCtrl', NotFoundPageCtrl)
     .directive('mainMenu', mainMenu)
+    .directive('siteFooter', siteFooter)
     .name;
