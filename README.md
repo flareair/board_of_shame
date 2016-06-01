@@ -5,11 +5,6 @@ Special for [G.A.S. club](https://vk.com/gasclub).
 Deployed:
 [boardofshame.2enter.ru](http://boardofshame.2enter.ru/)
 
-[Original table](https://docs.google.com/spreadsheets/d/12k92qZdkAvnff38qMY8P0U8F1UVWjE0sxhEnEGDfLd8/edit#gid=0)
-[VK group](http://vk.com/boardofshame)
-
-
-
 ## Requirements
 
 Was tested on Linux with Node v6.2.0, use docker image please.
@@ -18,7 +13,7 @@ Was tested on Linux with Node v6.2.0, use docker image please.
 
 1. Clone this repo, move to project folder
 2. Run `npm i`
-3. Run `npm run postinstall && npm start`
+3. Run `npm start`
 
 ## Deploy instructions (docker)
 
@@ -34,6 +29,11 @@ For use with [nginx-proxy](https://github.com/jwilder/nginx-proxy).
 * Unit and e2e testing
 * API full text search
 * Telegram bot
+
+## Links
+
+* [Original table](https://docs.google.com/spreadsheets/d/12k92qZdkAvnff38qMY8P0U8F1UVWjE0sxhEnEGDfLd8/edit#gid=0)
+* [VK group](http://vk.com/boardofshame)
 
 ## Author
 
