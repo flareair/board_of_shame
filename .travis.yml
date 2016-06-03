@@ -17,5 +17,11 @@ before_install:
   # adding mongo via docker
   - docker run --name test-mongo -d -p 27017:27017 mongo
 before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - 'node_modules/protractor/bin/webdriver-manager update --standalone --firefox'
+  - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'
   - webpack
+  - npm run server-detached
+  - sleep 3
 
