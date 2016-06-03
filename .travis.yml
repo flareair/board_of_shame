@@ -1,21 +1,23 @@
 language: node_js
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - build-essential
+node_js:
+  - 6.2.0
+
+sudo: required
+dist: trusty
+
+env:
+  - NODE_ENV=test
+
+services:
+  - mongodb
+
 branches:
   only:
     - master
     - develop
-env:
-  - NODE_ENV=test
-services:
-  - mongodb
-node_js:
-  - 6.2.0
+
 before_install:
-  - npm install -g node-gyp
-  - npm install
+  - sudo apt-get install build-essential
+before_script:
   - webpack
+
