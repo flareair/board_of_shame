@@ -8,16 +8,14 @@ dist: trusty
 env:
   - NODE_ENV=test
 
-services:
-  - mongodb
-
 branches:
   only:
     - master
     - develop
 
 before_install:
-  - sudo apt-get install build-essential
+  # adding mongo via docker
+  - docker run --name test-mongo -d -p 27017:27017 mongo
 before_script:
   - webpack
 
