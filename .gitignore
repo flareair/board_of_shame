@@ -3,3 +3,4 @@ bower_components/
 public/*
 !public/favicon.ico
 deploy/credentials.json
+deploy/deploy_rsa
