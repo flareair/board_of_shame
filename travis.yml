@@ -1,0 +1,10 @@
+language: node_js
+env:
+  - NODE_ENV=test
+services:
+  - mongodb
+node_js:
+  - 6.2.0
+before_install:
+  - npm install
+  - webpack

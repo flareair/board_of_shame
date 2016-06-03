@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack && ./node_modules/.bin/forever ./bin/www",
     "postinstall": "node ./server/init.js",
-    "server": "./node_modules/.bin/forever ./bin/www"
+    "server": "./node_modules/.bin/forever ./bin/www",
+    "test": "./node_modules/karma/bin/karma start --single-run"
   },
   "author": "flare",
   "license": "MIT",
