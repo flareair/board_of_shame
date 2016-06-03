@@ -1,6 +1,14 @@
 language: node_js
-sudo: required
-dist: trusty
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - build-essential
+branches:
+  only:
+    - master
+    - develop
 env:
   - NODE_ENV=test
 services:
@@ -8,6 +16,6 @@ services:
 node_js:
   - 6.2.0
 before_install:
-  - sudo apt-get install build-essential
+  - npm install -g node-gyp
   - npm install
   - webpack
