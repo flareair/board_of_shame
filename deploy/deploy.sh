@@ -1,7 +1,6 @@
 #!/bin/sh
 
-
-ssh -i deploy_rsa itiq@176.9.5.132 << EOT
+ssh -i deploy_rsa $SSH_USER@$SSH_HOST << EOT
     cd docker/board_of_shame
     git pull
     cd deploy/
