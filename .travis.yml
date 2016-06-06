@@ -3,20 +3,24 @@ node_js:
 - 6.2.0
 sudo: required
 dist: trusty
+addons:
+  ssh_known_hosts: 176.9.5.132
 env:
   matrix:
   - NODE_ENV=test
   global:
   - secure: mItcPvmLdmxNbwhPj/tLfIAaoDEX101ngdWpCVBAre/H+6cyN+xTpEBibWZ7pt/avYdiZXVdHcMiWjQMYzAG+g35jcULoULiPG6/79UA/RVShEptlOtbuesXn2OMDMkxAim6tHPbFqYadSnD4h+BdDaifN4FZiKoNQT7pUcXcT3aEoy8GqMXPCB4XdStvxTm3q2OEOsOg9uYwP9U63hfJzhyVwP71hSDSJAIb5QqjieAs3RTnYX9ojiaKIsW2W8lyCckfX7lRGLYxkXLKiJhdtU9Kheg37JFuthdoHW15C+XsSD+oPEhagYEAoEf+7tzVDtNWs2g+Pw7mz9LfJJ7/zucyi2qZep6p3e7m5aRQrriUxt/yseWe9knGKZXxiryZ5W9AhwW9fFn6lkDHdl1W5Tn7ljswEX4kSFzytsdbN9+3YUxP5wFhnJdXYDM4ndSz6fy06rqQkIFT2yxpNsQkGj7+zhwwR353gLmRFW5VElsG1IskBTLf3Qv/pW6yw9UPxZPzflc/UwIixWXPSWmEh4KXa0XPC6KZMzw07S/hFse5pHT7Xj8k0he4IsnHoQm3aU5qjlwUeNYiSmTSFAh2NfjCebYzrxdSN3by4O3Sg91Q+xo/7OgXF2cJ1zrua+asim9/p474y3bxmhuIFeLCo+rdy6DQP0hJXDOpJB1ILo=
   - secure: liy+CGTHoJgISUe9xu0eYPQZPXPkojdxeuYznU6p+lnLJlT5Ov2EZakN9yv7SypCW3JmOFyArBg9K66ZWYO/h6LEwv8PjDE94pX3SilK5d++Kyr1TOoLJSCDCn3cyGOkq0Dg5jAQV/gavt6BBHE75dKKiBeCk2QNMiWXXVszqQG75VPAbtru20EWVgwBw3XcCXVtGYnuSEzAyMb+z0rZcYHU8WKTot9AZNEQeEW1twarGdrIAQBHzRkGLmq8UdYWN5nsjjSDDcDXMg+fEvoroQCdjDdnaJWpWQMTEUPZDAoq8yB3or48cExTmHC3qyKFpQ4zrbViS5A9QtXKk/ZoEoS4rN/gyk1ozyfXik+lUvAfiiYNy/i7zaeXfXQoDA4/gkXgtMLxKN4CSuPg5jNzc2p8koosnuQW6oZTRtzCnUia9wNbavqCiWLmOfM6ISGeFAXmLsXXHbCGJy8gIHsQ+0kWIZ6jGP/a+QP4/btxKwboO670m4CkntSrP8FqGiI3WEji6+fSl0dToQt+8w8iBL2oRnxhHfdUgNAE2gzBOqhzroQNsoChsKcCxShCv7XsVzsiUHhrocVIMmIuqjGota/51bbZYpOyuKBaSRlcUppH6SCv+ER+P/y4PBUdgHlJXatutwLll/tF4G7oat4fO3bPXx1E8JacMsB94HDZjYw=
+  - secure: Xwzxb/8zOwQvj8F4hSBvZ2kLfE6g/5SuGvbqllUlNM/KcgBd0hzccjt+deX8/Y0f49003AjRKQ5+wNlTkjwkrWTpGXCBjd6fjrpu8Eid+XfdIzOUAP5hIkzLxWfOoivwVQ/TeKQvAt42Qy+vUTN3HOsvfu0WKK09MTRMGZnV6Q3iLxqyyGQYrLDZVhG5KtNrgsr76l5A+V0KsUfmwtfNU/Aigsu/lfjFCYlHE7dEhq4ddY1i0ZBuqMxLfZv1b62v0jsRmgRA+HZEflSWyvhd6GeFY0JEjIyVWNETaLBU/81TnsPo8WFCObk9ktNkEwEwqVT2dpcu+4WbflVwsJsyycf96hqN84Knj9JjFvIfd4ZiUm+9/y9zRiDsuuTFY4bk3P0AbxfINBRx/9xwBH1OsgAtb9GcVhn5zNE/1UJsDt/G9rc9O5RYuEyW3LLG51JcwTy3H1SxZmmM021sAyuUAnVqjOCgAH76yeFVlz+JhMtEHyX+LwnH3rs2RNA5c/SA5NyhPyzmoFmhVloBOlktWURLtVzSGsmxnBH0F6oEyF/t1Tv0YRIq8/XHjsLbVl1KI6AAPxefzb/fZhjqO7IPxC19Z7Ap/Vk2lhpnSHbGzjCFvUA0k12grEIrAKS4ChjKY7ZpokksyW1xEmKLys82hiSSmVPUv88Jm7mzhGOuiLw=
 branches:
   only:
   - master
   - develop
 before_install:
-- openssl aes-256-cbc -K $encrypted_45738dd6c874_key -iv $encrypted_45738dd6c874_iv
-  -in deploy/deploy_rsa.enc -out deploy/deploy_rsa -d
+- sudo apt-get -qq update
+- sudo apt-get install sshpass
 - docker run --name test-mongo -d -p 27017:27017 mongo
+- ls -la ./deploy/
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
