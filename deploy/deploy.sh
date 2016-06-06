@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ls -la ./deploy
+
 ssh -i ./deploy/deploy_rsa $SSH_USER@$SSH_HOST << EOT
     cd docker/board_of_shame
     git pull
