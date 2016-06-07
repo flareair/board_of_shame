@@ -3,7 +3,6 @@ import app from '../../app';
 
 describe('Link filter', () => {
     let sandbox;
-    let $httpBackend;
     let $filter;
 
 
