@@ -1,7 +1,7 @@
 'use strict';
 import app from '../../app';
 
-describe('Board controller', () => {
+describe('Board service', () => {
     let sandbox;
     let $httpBackend;
     let boardService;
@@ -30,20 +30,18 @@ describe('Board controller', () => {
         sandbox.restore();
     });
 
-    describe('boardService', () => {
-        it('should have API url ${allScammersUrl}', () => {
-            expect(boardService.url).to.equal(allScammersUrl);
-        });
+    it('should have API url ${allScammersUrl}', () => {
+        expect(boardService.url).to.equal(allScammersUrl);
+    });
 
 
-        describe('getAllScammers() method', (done) => {
-            it('should make request to API url', () => {
+    describe('getAllScammers() method', (done) => {
+        it('should make request to API url', () => {
 
-                $httpBackend.expectGET(allScammersUrl);
+            $httpBackend.expectGET(allScammersUrl);
 
-                boardService.getAllScammers();
-                $httpBackend.flush();
-            });
+            boardService.getAllScammers();
+            $httpBackend.flush();
         });
     });
 
