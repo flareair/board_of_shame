@@ -22,10 +22,13 @@ describe('Link filter', () => {
 
     describe('linkFilter', () => {
         it('should filter single href', () => {
-            let result = $filter('linkFilter')('abs');
+            let result = $filter('linkFilter')('abs \n,');
             expect(result).to.be.a.string;
             expect(result).to.equal('<a href="abs" target="_blank">abs</a><br />');
 
+            result = $filter('linkFilter')('http://www.google.com/voice?123123');
+            expect(result).to.be.a.string;
+            expect(result).to.equal('<a href="http://www.google.com/voice?123123" target="_blank">http://www.google.com/voice?123123</a><br />');
             result = $filter('linkFilter')('http://www.google.com/voice?123123');
             expect(result).to.be.a.string;
             expect(result).to.equal('<a href="http://www.google.com/voice?123123" target="_blank">http://www.google.com/voice?123123</a><br />');
