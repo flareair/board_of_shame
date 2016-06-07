@@ -17,18 +17,18 @@ branches:
   - master
   - develop
 before_install:
-- sudo apt-get -qq update
-- sudo apt-get install sshpass
-- docker run --name test-mongo -d -p 27017:27017 mongo
-- ls -la ./deploy/
+  - docker run --name test-mongo -d -p 27017:27017 mongo
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- node_modules/protractor/bin/webdriver-manager update --standalone --firefox
-- node_modules/protractor/bin/webdriver-manager start 2>&1 &
-- webpack
-- npm run server-detached
-- sleep 3
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - node_modules/protractor/bin/webdriver-manager update --standalone --firefox
+  - node_modules/protractor/bin/webdriver-manager start 2>&1 &
+  - webpack
+  - npm run server-detached
+  - sleep 3
+before_deploy:
+  - sudo apt-get -qq update
+  - sudo apt-get install sshpass
 deploy:
   provider: script
   script: deploy/deploy.sh
