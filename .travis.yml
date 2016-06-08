@@ -25,10 +25,11 @@ before_script:
 - docker-compose build
 script: docker-compose run --rm web
 before_deploy:
+- cd ../../
 - sudo apt-get -qq update
 - sudo apt-get install sshpass
 deploy:
   provider: script
-  script: deploy/deploy.sh
+  script: ./deploy/deploy.sh
   on:
     branch: master
