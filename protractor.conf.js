@@ -2,6 +2,7 @@
 
 exports.config = {
     framework: 'mocha',
+    directConnect: true,
     specs: [
         'client/pages/*.spec.e2e.js',
         'client/shared/*.spec.e2e.js',
