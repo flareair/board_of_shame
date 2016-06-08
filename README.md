@@ -1,9 +1,6 @@
 # Board Of Shame
 
-Master:
 [![Build Status](https://travis-ci.org/flareair/board_of_shame.svg?branch=master)](https://travis-ci.org/flareair/board_of_shame)
-Develop:
-[![Build Status](https://travis-ci.org/flareair/board_of_shame.svg?branch=develop)](https://travis-ci.org/flareair/board_of_shame)
 
 Special for [G.A.S. club](https://vk.com/gasclub).
 
