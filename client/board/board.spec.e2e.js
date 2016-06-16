@@ -32,8 +32,14 @@ describe('Board page (desktop)', () => {
 
 
     describe('board body', () => {
-        it('should contain a lot of board items', () => {
-            expect(element.all(by.css('.board-item')).count()).to.eventually.be.above(50);
+        it('should contain 11 board items (test table)', () => {
+            expect(element.all(by.css('.board-item')).count()).to.eventually.equal(11);
+        });
+    });
+
+    describe('board footer info', () => {
+        it('should contain right info about items', () => {
+            expect(element(by.css('.board-footer')).getText()).to.eventually.equal('Всего найдено: 11');
         });
     });
 
