@@ -16,6 +16,7 @@ COPY start.sh /app/start.sh
 
 ENV PORT 8080
 ENV NODE_ENV test
+ENV TABLE test
 ENV GOOGLE_APPLICATION_CREDENTIALS /app/credentials.json
 
 RUN npm i
