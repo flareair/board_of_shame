@@ -6,7 +6,7 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
-describe('Angular blog about page', () => {
+describe('About page', () => {
 
     beforeEach(() => {
         browser.get('/about');

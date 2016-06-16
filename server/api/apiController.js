@@ -5,12 +5,9 @@ const BlackList = require('./models/blackList');
 const MetaData = require('./models/metaData');
 const Scammer = require('./models/scammer');
 
+const sheetConf = require('../config/sheet.js');
 
-let sheet = new SheetModel({
-    sheetId: '12k92qZdkAvnff38qMY8P0U8F1UVWjE0sxhEnEGDfLd8',
-    begin: 'B9',
-    end: 'E5000',
-});
+let sheet = new SheetModel(sheetConf);
 
 let blackList = new BlackList(sheet, MetaData, Scammer);
 

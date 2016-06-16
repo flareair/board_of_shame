@@ -6,6 +6,7 @@ exports.config = {
     specs: [
         'client/pages/*.spec.e2e.js',
         'client/shared/*.spec.e2e.js',
+        'client/board/*.spec.e2e.js',
     ],
     seleniumAddress: 'http://localhost:4444/wd/hub',
     baseUrl: 'http://localhost:8080/',

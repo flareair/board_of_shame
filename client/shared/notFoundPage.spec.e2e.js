@@ -6,7 +6,7 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
-describe('Angular blog 404 page', () => {
+describe('404 page', () => {
 
     beforeEach(() => {
         browser.get('/blablabla/123');
