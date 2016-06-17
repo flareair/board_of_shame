@@ -4,7 +4,6 @@ const google = require('googleapis');
 const GoogleAuth = require('google-auth-library');
 
 const request = require('request');
-// let Scammer = require('./scammer');
 
 
 class Sheet {
@@ -13,15 +12,16 @@ class Sheet {
         this.options = options;
         this.scope = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
         this.oldApiUrl = `http://spreadsheets.google.com/feeds/list/${this.options.sheetId}/od6/public/values?alt=json`;
+        this.google = google;
+        this.authFactory = new GoogleAuth();
     }
 
 
     auth(callback) {
-        let authFactory = new GoogleAuth();
         let that = this;
-        authFactory.getApplicationDefault(function(err, authClient) {
+        that.authFactory.getApplicationDefault(function(err, authClient) {
             if (err) {
-                console.log('Authentication failed because of ', err);
+                console.error('Authentication failed because of ', err);
                 return callback(err);
             }
             if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -63,7 +63,7 @@ class Sheet {
 
     getData(callback) {
         let that = this;
-        let sheets = google.sheets('v4');
+        let sheets = this.google.sheets('v4');
 
         this.auth((err, auth) => {
             if (err) {
