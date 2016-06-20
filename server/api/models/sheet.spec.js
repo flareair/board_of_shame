@@ -84,6 +84,21 @@ describe('Sheet model', () => {
             expect(console.error.args[0][1]).to.deep.equal(err);
 
         });
+
+        it('should exec callback with error if something goes wrong', () => {
+
+
+            let callback = sandbox.spy();
+            sheet.auth(callback);
+
+            let err = new Error('Some error');
+
+            authFactoryStub.getApplicationDefault.callArg(0, err, {});
+
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0]).to.deep.equal(err);
+
+        });
     });
 
     describe('getLastModifiedDate method', () => {
