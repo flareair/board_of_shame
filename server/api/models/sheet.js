@@ -14,6 +14,7 @@ class Sheet {
         this.oldApiUrl = `http://spreadsheets.google.com/feeds/list/${this.options.sheetId}/od6/public/values?alt=json`;
         this.google = google;
         this.authFactory = new GoogleAuth();
+        this.request = request;
     }
 
 
@@ -21,7 +22,6 @@ class Sheet {
         let that = this;
         that.authFactory.getApplicationDefault(function(err, authClient) {
             if (err) {
-                console.error('Authentication failed because of ', err);
                 return callback(err);
             }
             if (authClient.createScopedRequired && authClient.createScopedRequired()) {
@@ -39,22 +39,27 @@ class Sheet {
     getLastModifiedDate(callback) {
         // using old v3 api
 
-        request(this.oldApiUrl, (err, res, body) => {
+        this.request(this.oldApiUrl, (err, res, body) => {
             if (err) {
                 return callback(err);
             }
 
-            if (res.statusCode !== 200) {
+            if (res.statusCode !== 200 || res.headers['content-type'] !== 'application/json; charset=UTF-8') {
                 return callback(new Error('Cant get last modified external'));
             }
 
-            body = JSON.parse(body);
+            try {
+                body = JSON.parse(body);
+                if (!body.feed.updated.$t) {
+                    throw new Error('No updated time!');
+                }
+            } catch(err) {
+                if (err.name === 'SyntaxError') {
+                    return callback(new Error('Can\'t parse JSON response'));
+                }
 
-            if (!body.feed.updated.$t) {
-                return false;
+                return callback(new Error('Can\'t get last modified in external response'));
             }
-
-
 
             return callback(null, body.feed.updated.$t);
         });
