@@ -84,7 +84,7 @@ describe('Sheet model', () => {
             authFactoryStub.getApplicationDefault.callArg(0, err, {});
 
             expect(callback.calledOnce).to.be.true;
-            expect(callback.args[0][0]).to.deep.equal(err);
+            expect(callback.args[0][0].message).to.equal('Some error');
 
         });
     });
