@@ -16,7 +16,6 @@ const sheetConf = require('../../config/sheet.js');
 describe('Sheet model', () => {
     let sheet;
     let sandbox;
-    let authFactoryStub;
 
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
@@ -41,6 +40,8 @@ describe('Sheet model', () => {
     });
 
     describe('auth method', () => {
+        let authFactoryStub;
+
         beforeEach(() => {
             authFactoryStub = sandbox.stub({
                 getApplicationDefault: (callback) => {
