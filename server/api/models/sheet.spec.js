@@ -73,19 +73,6 @@ describe('Sheet model', () => {
 
         });
 
-        it('should console.error error log if something goes wrong', () => {
-
-            sandbox.spy(console, 'error');
-            sheet.auth(sandbox.spy());
-
-            let err = new Error('Some error');
-
-            authFactoryStub.getApplicationDefault.callArg(0, err, {});
-            expect(console.error.calledOnce).to.be.true;
-            expect(console.error.args[0][1]).to.deep.equal(err);
-
-        });
-
         it('should exec callback with error if something goes wrong', () => {
 
 
@@ -103,9 +90,146 @@ describe('Sheet model', () => {
     });
 
     describe('getLastModifiedDate method', () => {
+        let requestStub;
+        let validRes = {
+            statusCode: 200,
+            headers: {
+                'content-type': 'application/json; charset=UTF-8'
+            }
+        };
 
+        let validBody = {};
+
+        beforeEach(() => {
+            requestStub = sandbox.stub();
+            sheet.request = requestStub;
+        });
+
+        it('should use request', () => {
+
+            sheet.getLastModifiedDate();
+
+            expect(requestStub.called).to.be.true;
+        });
+
+        it('should pass err to callback if request returns error', () => {
+
+
+            let callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            let err = new Error('Connection error');
+
+            sheet.request.callArg(1, err, null);
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0]).to.deep.equal(err);
+        });
+
+
+        it('should pass err to callback if response is not json, or status code not equal 200', () => {
+
+
+            let callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            sheet.request.callArg(1, null, {
+                statusCode: 404,
+                headers: {
+                    'content-type': 'application/json; charset=UTF-8'
+                }
+            });
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Cant get last modified external');
+
+            callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            sheet.request.callArg(1, null, {
+                statusCode: 200,
+                headers: {
+                    'content-type': 'text/html; charset=UTF-8'
+                }
+            });
+
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Cant get last modified external');
+        });
+
+
+        it('should pass err to callback if error in parsing JSON', () => {
+
+            let callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            sheet.request.callArg(1, null, validRes, '<html></html>');
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Can\'t parse JSON response');
+
+            callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+
+            sheet.request.callArg(1, null, validRes, '!!!');
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Can\'t parse JSON response');
+        });
+
+        it('should pass err to callback if there is no lastModified date in response', () => {
+
+            let callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            let body = {
+                feed: {}
+            };
+
+
+            sheet.request.callArg(1, null, validRes, JSON.stringify(body));
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Can\'t get last modified in external response');
+
+
+            callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            body = {
+                feed: {
+                    updated: {
+                        $t: ''
+                    }
+                }
+            };
+
+            sheet.request.callArg(1, null, validRes, JSON.stringify(body));
+            expect(callback.calledOnce).to.be.true;
+
+            expect(callback.args[0][0].message).to.equal('Can\'t get last modified in external response');
+        });
+
+
+        it('should pass last modified date if everythimg is ok', () => {
+
+            let callback = sandbox.spy();
+            sheet.getLastModifiedDate(callback);
+
+            let date = 'some date';
+
+            let body = {
+                feed: {
+                    updated: {
+                        $t: date
+                    }
+                }
+            };
+
+
+            sheet.request.callArg(1, null, validRes, JSON.stringify(body));
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0]).to.be.null;
+            expect(callback.args[0][1]).to.equal(date);
+
+        });
     });
-
     describe('getData method', () => {
 
     });
