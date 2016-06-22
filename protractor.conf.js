@@ -12,7 +12,7 @@ exports.config = {
     baseUrl: 'http://localhost:8080/',
     mochaOpts: {
         reporter: 'spec',
-        timeout: 4000
+        timeout: 6000
     },
     onPrepare: function () {
         require('babel-core/register')({
