@@ -12,7 +12,7 @@ class Sheet {
         this.options = options;
         this.scope = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
         this.oldApiUrl = `http://spreadsheets.google.com/feeds/list/${this.options.sheetId}/od6/public/values?alt=json`;
-        this.google = google;
+        this.sheets = google.sheets('v4');
         this.authFactory = new GoogleAuth();
         this.request = request;
     }
@@ -68,22 +68,25 @@ class Sheet {
 
     getData(callback) {
         let that = this;
-        let sheets = this.google.sheets('v4');
 
         this.auth((err, auth) => {
             if (err) {
                 return callback(err);
             }
 
-            sheets.spreadsheets.values.get({
+            that.sheets.spreadsheets.values.get({
                     auth: auth,
                     spreadsheetId: this.options.sheetId,
                     range: `${this.options.begin}:${this.options.end}`,
                 }, (err, res) => {
                 if (err) {
-                    console.log('error!');
                     return callback(err);
                 }
+
+                if (!res.values) {
+                    return callback(new Error('No data in sheets Api response'));
+                }
+
                 return callback(null, res.values);
             });
         });
