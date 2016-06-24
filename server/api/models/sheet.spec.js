@@ -30,7 +30,7 @@ describe('Sheet model', () => {
             expect(sheet.scope.length).to.be.above(0);
             expect(sheet.oldApiUrl).to.be.a('string');
 
-            expect(sheet.google).to.be.an('object');
+            expect(sheet.sheets).to.be.an('object');
             expect(sheet.authFactory).to.be.an('object');
         });
     });
@@ -231,7 +231,102 @@ describe('Sheet model', () => {
         });
     });
     describe('getData method', () => {
+        let authStub;
+        let sheetsStub;
+        beforeEach(() => {
+            authStub = sandbox.stub();
 
+            sheetsStub = {
+                spreadsheets: {
+                    values: sandbox.stub({
+                        get: () => {}
+                    })
+                }
+            };
+
+
+            sheet.auth = authStub;
+            sheet.sheets = sheetsStub;
+        });
+
+        it('should use auth method', () => {
+            sheet.getData();
+
+            expect(authStub.calledOnce).to.be.true;
+        });
+
+
+        it('should pass auth error to callback', () => {
+            let callback = sandbox.spy();
+            sheet.getData(callback);
+
+            authStub.callArg(0, new Error('Auth error'));
+
+            expect(callback.calledOnce).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Auth error');
+        });
+
+
+        it('should launch sheets Api method if auth successfull', () => {
+            let callback = sandbox.spy();
+            sheet.getData(callback);
+
+            authStub.callArg(0, null, {auth: true});
+
+            expect(sheetsStub.spreadsheets.values.get.called).to.be.true;
+        });
+
+
+        it('should pass API error to callback', () => {
+            let callback = sandbox.spy();
+            sheet.getData(callback);
+
+            authStub.callArg(0, null, {auth: true});
+            sheetsStub.spreadsheets.values.get.callArg(1, new Error('Api error'));
+
+            expect(callback.called).to.be.true;
+            expect(callback.args[0][0].message).to.equal('Api error');
+        });
+
+        it('should pass error to callback if res has no values array', () => {
+            let callback = sandbox.spy();
+            sheet.getData(callback);
+
+            authStub.callArg(0, null, {auth: true});
+            sheetsStub.spreadsheets.values.get.callArg(1, null, {});
+
+            expect(callback.called).to.be.true;
+            expect(callback.args[0][0].message).to.equal('No data in sheets Api response');
+        });
+
+        it('should pass res values to callback if everything is OK', () => {
+            let callback = sandbox.spy();
+            let values = ['123', '123', '123'];
+            sheet.getData(callback);
+
+            authStub.callArg(0, null, {auth: true});
+            sheetsStub.spreadsheets.values.get.callArg(1, null, {
+                values: values
+            });
+
+            expect(callback.called).to.be.true;
+            expect(callback.args[0][0]).to.equal(null);
+            expect(callback.args[0][1]).to.equal(values);
+
+
+            callback = sandbox.spy();
+            values = [];
+            sheet.getData(callback);
+
+            authStub.callArg(0, null, {auth: true});
+            sheetsStub.spreadsheets.values.get.callArg(1, null, {
+                values: values
+            });
+
+            expect(callback.called).to.be.true;
+            expect(callback.args[0][0]).to.equal(null);
+            expect(callback.args[0][1]).to.equal(values);
+        });
     });
 
 });
