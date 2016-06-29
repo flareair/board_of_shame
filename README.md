@@ -5,7 +5,7 @@
 Special for [G.A.S. club](https://vk.com/gasclub).
 
 Deployed:
-[boardofshame.2enter.ru](http://boardofshame.2enter.ru/)
+[boardofshame.ru](http://boardofshame.ru/)
 
 ## Requirements
 

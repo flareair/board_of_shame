@@ -5,7 +5,7 @@ web:
   volumes:
     - /app
   environment:
-    VIRTUAL_HOST: boardofshame.2enter.ru
+    VIRTUAL_HOST: boardofshame.ru,www.boardofshame.ru
   restart: always
   container_name: "boardofshame"
   links:

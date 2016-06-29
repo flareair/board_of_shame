@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/flareair/board_of_shame.git ./ && git checkout tags/0.5.0
+RUN git clone https://github.com/flareair/board_of_shame.git ./ && git checkout tags/0.6.0
 
 COPY credentials.json /app/credentials.json
 
