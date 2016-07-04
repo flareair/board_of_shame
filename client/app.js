@@ -2,6 +2,13 @@
 
 import './main.less';
 
+
+import 'file!./favicon.ico';
+import 'file!./favicon-32.ico';
+import 'file!./favicon-152.png';
+
+// 123
+
 import angular from 'angular';
 import ngRouter from 'angular-route';
 import ngSanitize from 'angular-sanitize';

@@ -38,7 +38,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style','css?minimize!postcss!less')
             },
             {
-              test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+              test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
               loader: 'file?name=[path][name].[ext]'
             },
 
