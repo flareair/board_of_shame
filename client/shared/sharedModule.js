@@ -14,6 +14,7 @@ import NotFoundPageCtrl from './controllers/NotFoundPageCtrl';
 
 import mainMenu from './directives/mainMenuDirective';
 import siteFooter from './directives/siteFooterDirective';
+import socialButtons from './directives/socialButtonsDirective';
 
 export default angular.module('app.shared', [ngRouter])
     .config(sharedRouter)
@@ -24,4 +25,5 @@ export default angular.module('app.shared', [ngRouter])
     .controller('NotFoundPageCtrl', NotFoundPageCtrl)
     .directive('mainMenu', mainMenu)
     .directive('siteFooter', siteFooter)
+    .directive('socialButtons', socialButtons)
     .name;
