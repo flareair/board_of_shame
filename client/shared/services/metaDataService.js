@@ -1,8 +1,9 @@
 'use strict';
 
 export default class metaDataService {
-    constructor() {
+    constructor($location) {
         this.pageTitle = '';
+        this.address = `http://${$location.host()}/`;
     }
 
     getPageTitle() {
@@ -13,3 +14,5 @@ export default class metaDataService {
         this.pageTitle = newTitle;
     }
 }
+
+metaDataService.$inject = ['$location'];
