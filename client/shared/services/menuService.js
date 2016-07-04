@@ -10,7 +10,7 @@ export default class menuService {
             },
             {
                 link: '/about',
-                name: 'О проекте',
+                name: 'FAQ',
             },
         ];
     }

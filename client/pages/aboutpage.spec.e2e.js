@@ -13,14 +13,14 @@ describe('About page', () => {
     });
 
     it('should have right page title', () => {
-        expect(browser.getTitle()).to.eventually.equal('Oб этом проекте');
+        expect(browser.getTitle()).to.eventually.equal('FAQ');
     });
 
     it('should have right h1 caption', () => {
-        expect(element(by.tagName('h1')).getText()).to.eventually.equal('Об этом проекте');
+        expect(element(by.tagName('h1')).getText()).to.eventually.equal('FAQ');
     });
 
     it('should have right active menu item', () => {
-        expect(element(by.css('.navbar .active')).getText()).to.eventually.equal('О проекте');
+        expect(element(by.css('.navbar .active')).getText()).to.eventually.equal('FAQ');
     });
 });
