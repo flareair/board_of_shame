@@ -14,6 +14,6 @@ describe('AboutPage controller', () => {
     it('should have right title', () => {
         AboutPageCtrl.should.exist;
         AboutPageCtrl.title.should.be.a('string');
-        AboutPageCtrl.title.should.equal('Oб этом проекте');
+        AboutPageCtrl.title.should.equal('FAQ');
     });
 });

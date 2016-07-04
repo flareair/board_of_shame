@@ -2,7 +2,7 @@
 
 export default class AboutPageCtrl {
     constructor(metaDataService,menuService) {
-        this.title = 'Oб этом проекте';
+        this.title = 'FAQ';
         metaDataService.setPageTitle(this.title);
         menuService.setActiveItem('/about');
     }
