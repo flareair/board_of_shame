@@ -13,11 +13,13 @@ export default class BoardCtrl {
         this.loading = false;
 
         this.activate();
-        this.search = this.getSearchQuery();
 
     }
 
     activate() {
+        this.search = this.getSearchQuery();
+
+
         this.loading = true;
         return this.boardService.getAllScammers()
             .then((res) => {
@@ -39,6 +41,8 @@ export default class BoardCtrl {
 
     getSearchQuery() {
         let query = this.$location.search();
+
+        console.log(query);
 
         if (query.hasOwnProperty('search') && query.search !== true) {
             return query.search;
