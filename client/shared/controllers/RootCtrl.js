@@ -1,9 +1,10 @@
 'use strict';
 
 export default class RootCtrl {
-    constructor(metaDataService) {
+    constructor(metaDataService, loadingService) {
         this.metaData = metaDataService;
+        this.loading = loadingService;
     }
 }
 
-RootCtrl.$inject = ['metaDataService'];
+RootCtrl.$inject = ['metaDataService', 'loadingService'];

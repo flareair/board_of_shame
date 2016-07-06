@@ -24,10 +24,10 @@
     <!-- navbar -->
 
     <main-menu></main-menu>
-
     <!-- angular view -->
-    <main ng-view></main>
+    <main ng-view ng-hide="root.loading.isViewLoading"></main>
     <!-- scripts -->
+    <view-loading></view-loading>
 
     <site-footer></site-footer>
 
