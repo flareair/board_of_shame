@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/flareair/board_of_shame.svg?branch=master)](https://travis-ci.org/flareair/board_of_shame)
 
+List of russian unfair musical instruments and equipment vendors.
+
 Special for [G.A.S. club](https://vk.com/gasclub).
 
 Deployed:
@@ -13,7 +15,7 @@ Tested on Ubuntu Linux with Node v6.2.0, use docker image please.
 
 ## How to deploy/test
 
-See [travis.yml](travis.yml) for details
+See [travis.yml](.travis.yml) for details
 
 ## TODO
 
