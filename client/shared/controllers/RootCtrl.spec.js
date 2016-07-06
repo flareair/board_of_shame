@@ -15,4 +15,9 @@ describe('Root controller', () => {
         RootCtrl.metaData.should.exist;
         RootCtrl.metaData.should.be.an('object');
     });
+
+    it('should have right loading property', () => {
+        RootCtrl.loading.should.exist;
+        RootCtrl.loading.should.be.an('object');
+    });
 });
