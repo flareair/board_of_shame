@@ -2,6 +2,7 @@ node_modules/
 bower_components/
 public/*
 !public/favicon.ico
+!public/images
 deploy/credentials.json
 deploy/test/credentials.json
 deploy/deploy_rsa
