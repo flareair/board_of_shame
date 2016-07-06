@@ -1,6 +1,6 @@
 {
   "name": "board_of_shame",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Board of shame",
   "main": "app.js",
   "scripts": {
