@@ -26,7 +26,7 @@ describe('Board controller', () => {
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
         angular.mock.module(app);
-        angular.mock.inject(($controller, $q, _$rootScope_) => {
+        angular.mock.inject(($controller, $q, _$rootScope_, _$location_) => {
             deferred = $q.defer();
 
             stubBoardService = sandbox.stub({
@@ -50,6 +50,7 @@ describe('Board controller', () => {
             $scope = _$rootScope_.$new();
 
             BoardCtrl = $controller('BoardCtrl', {
+                $location: _$location_,
                 metaDataService: stubMetaDataService,
                 menuService: stubMenuService,
                 boardService: stubBoardService,
@@ -88,6 +89,14 @@ describe('Board controller', () => {
     });
 
     describe('activate() method', () => {
+        it('should launch getSearchQuery method', () => {
+            sinon.spy(BoardCtrl, 'getSearchQuery');
+
+            BoardCtrl.activate();
+
+            expect(BoardCtrl.getSearchQuery.calledOnce).to.be.true;
+        });
+
         it('should use boardService', (done) => {
 
             BoardCtrl.activate();
@@ -95,6 +104,7 @@ describe('Board controller', () => {
             done();
 
         });
+
 
         it('should return scammers data if promise successful', (done) => {
 
@@ -146,6 +156,68 @@ describe('Board controller', () => {
 
             deferred.resolve(res);
             $scope.$apply();
+        });
+    });
+
+    describe('changeQuery method', () => {
+
+        it('should use $location.search() method', () => {
+            sinon.spy(BoardCtrl.$location, 'search');
+
+            BoardCtrl.changeQuery();
+            expect(BoardCtrl.$location.search.calledOnce).to.be.true;
+        });
+
+        it('should change query string then board.search is changing', () => {
+            BoardCtrl.search = 'Search';
+            BoardCtrl.changeQuery();
+            expect(BoardCtrl.$location.search()).to.be.an('object');
+            expect(BoardCtrl.$location.search().search).to.equal('Search');
+
+            BoardCtrl.search = 'search///+=12312 string';
+            BoardCtrl.changeQuery();
+            expect(BoardCtrl.$location.search()).to.be.an('object');
+            expect(BoardCtrl.$location.search().search).to.equal('search///+=12312 string');
+        });
+    });
+
+    describe('getSearchQuery method', () => {
+
+        beforeEach(() => {
+            BoardCtrl.$location = sinon.stub({
+                search: () => {}
+            });
+        });
+
+        it('should use $location.search() method', () => {
+            // sinon.spy(BoardCtrl.$location, 'search');
+            BoardCtrl.$location.search.returns({});
+            BoardCtrl.getSearchQuery();
+            expect(BoardCtrl.$location.search.calledOnce).to.be.true;
+        });
+
+
+        it('should return search query as plain readable text if it is valid', () => {
+            // sinon.spy(BoardCtrl.$location, 'search');
+
+            BoardCtrl.$location.search.returns({search: '123123'});
+
+            expect(BoardCtrl.getSearchQuery()).to.be.a('string');
+            expect(BoardCtrl.getSearchQuery()).to.equal('123123');
+        });
+
+        it('should return emty string if search query param is empty', () => {
+            // sinon.spy(BoardCtrl.$location, 'search');
+
+            BoardCtrl.$location.search.returns({search: true});
+
+            expect(BoardCtrl.getSearchQuery()).to.be.a('string');
+            expect(BoardCtrl.getSearchQuery()).to.equal('');
+
+            BoardCtrl.$location.search.returns({});
+
+            expect(BoardCtrl.getSearchQuery()).to.be.a('string');
+            expect(BoardCtrl.getSearchQuery()).to.equal('');
         });
     });
 
