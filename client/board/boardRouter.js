@@ -8,5 +8,6 @@ export default function boardRouter($routeProvider) {
             templateUrl: '/board/partials/board.html',
             controller: 'BoardCtrl',
             controllerAs: 'board',
+            reloadOnSearch: false,
         });
 }

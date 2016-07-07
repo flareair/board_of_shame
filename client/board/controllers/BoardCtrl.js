@@ -1,11 +1,12 @@
 'use strict';
 
 export default class BoardCtrl {
-    constructor(metaDataService, menuService, boardService) {
+    constructor($location, metaDataService, menuService, boardService) {
         this.title = 'BoardOfShame Список мошенников';
         metaDataService.setPageTitle(this.title);
         menuService.setActiveItem('/');
 
+        this.$location = $location;
         this.boardService = boardService;
 
         this.scammers = [];
@@ -13,10 +14,12 @@ export default class BoardCtrl {
 
         this.activate();
 
-        this.search = '';
     }
 
     activate() {
+        this.search = this.getSearchQuery();
+
+
         this.loading = true;
         return this.boardService.getAllScammers()
             .then((res) => {
@@ -31,6 +34,22 @@ export default class BoardCtrl {
                 this.loading = false;
             });
     }
+
+    changeQuery() {
+        this.$location.search('search', this.search);
+    }
+
+    getSearchQuery() {
+        let query = this.$location.search();
+
+        console.log(query);
+
+        if (query.hasOwnProperty('search') && query.search !== true) {
+            return query.search;
+        }
+
+        return '';
+    }
 }
 
-BoardCtrl.$inject = ['metaDataService', 'menuService', 'boardService'];
+BoardCtrl.$inject = ['$location', 'metaDataService', 'menuService', 'boardService'];
